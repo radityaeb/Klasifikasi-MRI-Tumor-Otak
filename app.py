@@ -36,7 +36,7 @@ def classify_image(image):
 
     cropped_image = crop_image(image)
     img = cropped_image.resize((224, 224))
-    img_array = preprocess_input(img_array)
+    img_array = preprocess_input(img)
     img_array = np.expand_dims(img_array, axis=0)
 
     predictions = model.predict(img_array, verbose=0)
