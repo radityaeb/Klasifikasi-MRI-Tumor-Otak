@@ -1,11 +1,12 @@
 import streamlit as st
 import tensorflow as tf
+from tensorflow.keras.applications.densenet import preprocess_input
 from keras.models import load_model
 import numpy as np
 from PIL import Image
 
 try:
-    model = load_model("brain_model.keras")
+    model = load_model("brain_model (3).keras")
       
 except Exception as e:
     st.error(f"Gagal memuat model: {e}")
@@ -35,7 +36,8 @@ def classify_image(image):
 
     cropped_image = crop_image(image)
     img = cropped_image.resize((224, 224))
-    img_array = np.array(img) / 255.0
+    img_array = np.array(img, dtype=np.float32)
+    img_array = preprocess_input(img_array)
     img_array = np.expand_dims(img_array, axis=0)
 
     predictions = model.predict(img_array, verbose=0)
