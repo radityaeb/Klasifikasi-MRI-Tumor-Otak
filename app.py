@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 
 try:
-    model = load_model("brain_model (3).keras")
+    model = load_model("brain_model (4).keras")
       
 except Exception as e:
     st.error(f"Gagal memuat model: {e}")
